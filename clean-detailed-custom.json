@@ -98,7 +98,7 @@
 		{
 			"leading_diamond": "\ue0b2",
 			"trailing_diamond": "\ue0b0",
-			"template": " {{ if eq .Type \"wifi\"}}\uf1eb  {{ .Name }}{{ else if eq .Type \"ethernet\"}}\ueba9{{ end }} ",
+			"template": " {{ if eq .Type \"wifi\"}}\uf1eb  {{ .Name }}{{ else if eq .Type \"ethernet\"}}\ueba9{{ else }} womp womp {{ end }} ",
 			"foreground": "#FEF5ED",
 			"background": "#003a67",
 			"type": "connection",
