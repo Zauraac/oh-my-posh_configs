@@ -19,15 +19,15 @@
       "segments": [
         {
           "properties": {
-            "macos": "\uf179 ",
-            "ubuntu": "\uf31b ",
-            "windows": "\uf17a ", 
-			"fedora": "\uf30b ",
-			"alpine": "\uf300 "
+            "macos": "\uf179",
+            "ubuntu": "\uf31b",
+            "windows": "\uf17a", 
+			"fedora": "\uf30b",
+			"alpine": "\uf300"
           },
           "leading_diamond": "\ue0b2",
           "trailing_diamond": "\ue0d6",
-          "template": " {{ if .WSL }}\uf17a \uf090 @{{ end }}{{.Icon}}",
+          "template": " {{ if .WSL }} \uf17a \uf090 {{ end }}{{.Icon}} ",
           "foreground": "#003a67",
           "background": "#FEF5ED",
           "type": "os",
