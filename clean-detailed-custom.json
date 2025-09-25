@@ -26,7 +26,7 @@
 			"alpine": "\uf300 "
           },
           "leading_diamond": "\ue0b2",
-          "trailing_diamond": "<transparent,#FEF5ED>\ue0b2</>",
+          "trailing_diamond": "\ue0d6",
           "template": " {{ if .WSL }}\uf17a \uf090 @{{ end }}{{.Icon}}",
           "foreground": "#003a67",
           "background": "#FEF5ED",
@@ -48,7 +48,7 @@
 		  }
         },
         {
-          "leading_diamond": "<transparent,#003a67>\ue0b0",
+          "leading_diamond": "\ue0d7",
           "trailing_diamond": "\ue0b0",
           "template": " \uefc5 {{ round .PhysicalPercentUsed .Precision }}% ",
           "foreground": "#FEF5ED",
@@ -62,7 +62,7 @@
 			"always_enabled": false,
             "threshold": 10
           },
-          "leading_diamond": "<transparent,#575656>\ue0b0</>",
+          "leading_diamond": "\ue0d7",
           "trailing_diamond": "\ue0b0",
           "template": " {{ .FormattedMs }} ",
           "foreground": "#FEF5ED",
@@ -82,10 +82,13 @@
 				"branch_icon": "\ue725 ",
 				"fetch_status": true,
 				"fetch_upstream_icon": true,
-				"fetch_worktree_count": true
+				"fetch_worktree_count": true,
+				"mapped_upstreams": {
+					"forgejo": "\uf335"
+				}
 			},
 			"leading_diamond": "\ue0b2",
-			"trailing_diamond": "<transparent,#4aafff>\ue0b2</>",
+			"trailing_diamond": "\ue0d6",
 			"template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
 			"foreground": "#011627",
 			"background": "#4aafff",
@@ -94,8 +97,8 @@
         },
 		{
 			"leading_diamond": "\ue0b2",
-			"trailing_diamond": "\ue0b0<#003a67,transparent>",
-			"template": " {{ if eq .Type \"wifi\"}}\uf1eb {{ .Name }}{{ else if eq .Type \"ethernet\"}}\ueba9{{ end }} ",
+			"trailing_diamond": "\ue0b0",
+			"template": " {{ if eq .Type \"wifi\"}}\uf1eb  {{ .Name }}{{ else if eq .Type \"ethernet\"}}\ueba9{{ end }} ",
 			"foreground": "#FEF5ED",
 			"background": "#003a67",
 			"type": "connection",
