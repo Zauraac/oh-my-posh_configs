@@ -31,6 +31,7 @@
           "foreground": "#003a67",
           "background": "#FEF5ED",
           "type": "os",
+		  "description": "OS indicator with WSL support",
           "style": "diamond"
         },
         {
@@ -41,6 +42,7 @@
           "background": "#FEF5ED",
           "type": "shell",
           "style": "diamond",
+		  "description": "Shell type name 00",
 		  "properties": {
 			  "mapped_shell_names": {
 				  "pwsh": "PS"
@@ -54,6 +56,7 @@
           "foreground": "#FEF5ED",
           "background": "#003a67",
           "type": "sysinfo",
+		  "description": "Memory usage",
           "style": "diamond"
         },
         {
@@ -68,6 +71,7 @@
           "foreground": "#FEF5ED",
           "background": "#575656",
           "type": "executiontime",
+		  "description": "Command exec. time",
           "style": "diamond"
         }
       ],
@@ -93,6 +97,7 @@
 			"foreground": "#011627",
 			"background": "#4aafff",
 			"type": "git",
+			"description": "Git",
 			"style": "diamond"
         },
 		{
@@ -102,7 +107,30 @@
 			"foreground": "#FEF5ED",
 			"background": "#003a67",
 			"type": "connection",
+			"description": "Wifi/ethernet connection indicator",
 			"style": "diamond"
+		},
+		{
+		  "type": "battery",
+		  "style": "diamond",
+		  "leading_diamond": "\ue0d7",
+		  "trailing_diamond": "\ue0b0",
+		  "foreground": "#FEF5ED",
+		  "background": "#003a67",
+		  "background_templates": [
+			"{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+			"{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
+			"{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+		  ],
+		  "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}",
+		  "description": "Charging icon, shouldn't display for desktop-class devices",
+		  "properties": {
+			"discharging_icon": "\udb85\udfe4",
+			"charging_icon": "\udb80\udc84",
+			"charged_icon": "\udb85\udfe2",
+			"not_charging_icon": "\udb80\udc83",
+			"display_error": true
+		  }
 		}
 		]
 	},
@@ -120,20 +148,15 @@
           "properties": {
             "time_format": "15:04"
           },
-          "template": " \ueac4 {{ .CurrentDate | date .Format }} |",
+          "template": " \ueb7c {{ .CurrentDate | date .Format }} |",
           "type": "time",
 		  "foreground": "#FEF5ED",
-          "style": "plain"
-        },
-        {
-          "template": " \uf292 ",
-          "type": "root",
-		  "foreground": "#FEF5ED",
+		  "description": "Current time",
           "style": "plain"
         },
         {
           "properties": {
-            "folder_icon": "\uf07b",
+            "folder_icon": "\uf114",
             "folder_separator_icon": " \uf061 ",
             "home_icon": "\ueb06",
 			"style": "mixed",
@@ -143,6 +166,7 @@
           "template": " {{ .Path }} ",
           "type": "path",
 		  "foreground": "#FEF5ED",
+		  "description": "Current working directory",
           "style": "plain"
         }
       ],
@@ -156,9 +180,10 @@
           "properties": {
 			"always_enabled": true
           },
-          "template": " {{ if .Root }}\uf148 {{ end }}{{ if .SSHSession }}\ueb3a {{ end }}{{ .UserName }}@{{ .HostName }} ",
+		"template": " {{ if .Root }}\uf148 {{ end }}{{ if .SSHSession }}\ueb3a {{ else }}\uf007 {{ end }}{{ .UserName }}  \uf108 {{ .HostName }} ",
           "type": "session",
 		  "foreground": "#FEF5ED",
+		  "description": "Elevation indicator, user and machine readout",
           "style": "plain"
         },
 		{
@@ -166,6 +191,7 @@
 		"style": "plain",
 		"foreground": "#FEF5ED",
 		"template": " | {{ .IP }} ",
+		"description": "Separator and public IP address fetcher",
 		"properties": {
 			"http_timeout": 1000
 			}
@@ -180,9 +206,10 @@
           "properties": {
             "always_enabled": true
           },
-          "template": "\u2570\u2500 \uf155 ",
+          "template": "\u2570\u2500 \ueac4 ",
           "type": "status",
 		  "foreground": "#FEF5ED",
+		  "description": "Final line, prompt",
           "style": "plain"
         }
       ],
