@@ -22,11 +22,11 @@
       "segments": [
         {
           "properties": {
-            "macos": "\uf179",
-            "ubuntu": "\uf31b",
-            "windows": "\uf17a", 
-			"fedora": "\uf30b",
-			"alpine": "\uf300"
+		"macos": "\uf179",
+		"ubuntu": "\uf31b",
+		"windows": "\uf17a", 
+		"fedora": "\uf30b",
+		"alpine": "\uf300"
           },
           "leading_diamond": "\ue0b2",
           "trailing_diamond": "\ue0d6",
@@ -34,7 +34,7 @@
           "foreground": "#003a67",
           "background": "#FEF5ED",
           "type": "os",
-		  "description": "OS indicator with WSL support",
+	  "description": "OS indicator with WSL support",
           "style": "diamond"
         },
         {
@@ -98,7 +98,7 @@
 			},
 			"leading_diamond": "\ue0b2",
 			"trailing_diamond": "\ue0d6",
-			"template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+			"template": " {{ .UpstreamIcon }} {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
 			"foreground": "#011627",
 			"background": "#4aafff",
 			"type": "git",
