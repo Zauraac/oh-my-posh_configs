@@ -1,11 +1,14 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "transient_prompt": {
-    "template": "\uf155 ",
+    "template": "{{ .Segments.Time.CurrentDate | date .Segments.Time.Format }} \uf155 ",
     "foreground": "#FEF5ED",
-    "background": "transparent"
+    "background": "transparent",
+    "properties": {
+	      "time_format": "15:04:05"
+    }
   },
-  "console_title_template": "{{ .Folder }}",
+  "console_title_template": "{{ if .Root }}⇧ {{ end}}{{ .Shell }} | {{ .Folder }}",
   "upgrade": {
     "source": "cdn",
     "interval": "168h",
@@ -53,9 +56,10 @@
         {
           "leading_diamond": "\ue0d7",
           "trailing_diamond": "\ue0b0",
-          "template": " \uefc5 {{ round .PhysicalPercentUsed .Precision }}% ",
+          "template": " {{ if eq .OS \"windows\" }}\uefc5 {{ round .PhysicalPercentUsed .Precision }}% {{ end }}",
           "foreground": "#FEF5ED",
           "background": "#003a67",
+	  "min_width": 65,
           "type": "sysinfo",
 		  "description": "Memory usage",
           "style": "diamond"
@@ -104,7 +108,7 @@
 		{
 			"leading_diamond": "\ue0b2",
 			"trailing_diamond": "\ue0b0",
-			"template": " {{ if eq .Type \"wifi\"}}\uf1eb  {{ .Name }}{{ else if eq .Type \"ethernet\"}}\ueba9{{ else }} womp womp {{ end }} ",
+			"template": " {{ if eq .Type \"wifi\"}}\uf1eb  {{ .Name }}{{ else if eq .Type \"ethernet\"}}\ueba9{{ else }}\udb85\ude16{{ end }} ",
 			"foreground": "#FEF5ED",
 			"background": "#003a67",
 			"type": "connection",
@@ -112,19 +116,29 @@
 			"style": "diamond"
 		},
 		{
-		  "type": "battery",
+			"leading_diamond": "\ue0b2",
+			"trailing_diamond": "\ue0b0",
+			"template": "{{ if ne .OS \"windows\" }} \uefc5 {{ round .PhysicalPercentUsed .Precision }}% {{ end }}",
+			"foreground": "#FEF5ED",
+			"background": "#003a67",
+			"type": "sysinfo",
+			"description": "Fallback for connection type when Win. isn't the current OS. Display memory instead of in the previous 'sysinfo' segment.",
+			"style": "diamond"
+		},
+		{ "type": "battery",
 		  "style": "diamond",
 		  "leading_diamond": "\ue0d7",
 		  "trailing_diamond": "\ue0b0",
 		  "foreground": "#FEF5ED",
 		  "background": "#003a67",
 		  "background_templates": [
-			"{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
-			"{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
-			"{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+			"{{if eq \"Charging\" .State.String}}#40c4ff{{end}} ",
+			"{{if eq \"Discharging\" .State.String}}#ff5722{{end}}x",
+			"{{if eq \"Full\" .State.String}}#4caf50{{end}}x"
 		  ],
-		  "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}",
+		  "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }} ",
 		  "description": "Charging icon, shouldn't display for desktop-class devices",
+		  "min_width": 80,
 		  "properties": {
 			"discharging_icon": "\udb85\udfe4",
 			"charging_icon": "\udb80\udc84",
@@ -151,8 +165,9 @@
           },
           "template": " \ueb7c {{ .CurrentDate | date .Format }} |",
           "type": "time",
-		  "foreground": "#FEF5ED",
-		  "description": "Current time",
+	  "foreground": "#FEF5ED",
+	  "description": "Current time",
+	  "min_width": 60,
           "style": "plain"
         },
         {
@@ -193,6 +208,7 @@
 		"foreground": "#FEF5ED",
 		"template": " | {{ .IP }} ",
 		"description": "Separator and public IP address fetcher",
+		"min_width": 60,
 		"properties": {
 			"http_timeout": 1000
 			}
