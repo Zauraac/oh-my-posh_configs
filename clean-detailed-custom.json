@@ -45,7 +45,8 @@
 		  "description": "Shell type name 00",
 		  "properties": {
 			  "mapped_shell_names": {
-				  "pwsh": "PS"
+				  "pwsh": "PS",
+				  "bash": "Bash"
 			  }
 		  }
         },
