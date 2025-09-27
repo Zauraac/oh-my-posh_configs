@@ -131,11 +131,6 @@
 		  "trailing_diamond": "\ue0b0",
 		  "foreground": "#FEF5ED",
 		  "background": "#003a67",
-		  "background_templates": [
-			"{{if eq \"Charging\" .State.String}}#40c4ff{{end}} ",
-			"{{if eq \"Discharging\" .State.String}}#ff5722{{end}}x",
-			"{{if eq \"Full\" .State.String}}#4caf50{{end}}x"
-		  ],
 		  "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }} ",
 		  "description": "Charging icon, shouldn't display for desktop-class devices",
 		  "min_width": 80,
