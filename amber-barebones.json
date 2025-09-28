@@ -1,0 +1,67 @@
+{
+	  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+	  "palette": {
+		  "accent": "#de7f26",
+		  "text": "#e4e4f2"
+	  },
+	  "transient_prompt": {
+		  "template": "{{ .Segments.Time.CurrentDate | date .Segments.Time.Format }}",
+		  "foreground": "p:text",
+		  "background": "transparent", 
+		  "properties": {
+			  "time_format": "15.04.05"
+		  }
+	  },
+	  "secondary_prompt": {
+		  "template": "> ",
+		  "foreground": "p:text"
+	  },
+
+	  "console_title_template": "{{ .Shell }} | {{ .Folder }}",
+
+	  "blocks": [
+		  {
+			  "type": "prompt",
+			  "alignment": "left",
+			  "segments" : [
+				  {
+					  "type": "shell",
+					  "template": "{{ .Name }} ",
+					  "style": "plain",
+					  "foreground": "p:accent",
+					  "properties": {
+						  "mapped_shell_names": {
+							  "pwsh": "ps"
+						  }
+					  }
+				  },
+				  {
+					  "type": "sessions",
+					  "template": "[{{ .UserName }}@{{ .HostName }} {{ if .SSH }}<p:accent>on SSH</>{{ end }}]",
+					  "foreground_templates": {
+						  "{{ if .SSH }}p:text{{ end }}"
+					  }
+				  },
+				  {
+					  "type": "path",
+					  "template": " | {{ if .Root }}ROOT{{ else }}{{ .Path }}{{ .End }} {{ if not .Writeable }}<p:accent>!W </> {{ end }}",
+					  "foreground": "p:text",
+					  "properties": {
+						  "style": "agnoster"
+					  }
+				  }
+			  ]
+		  },
+		  {
+			  "newline": true,
+			  "alignment": "left",
+			  "segments": [
+				  {
+					  "type": "prompt",
+					  "template": "{{ if .Root }}<p:accent># </>{{ end }}> ",
+					  "foreground": "p:text"
+				  }
+			  ]
+		  }
+	  ]
+}
