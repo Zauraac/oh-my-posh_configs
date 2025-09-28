@@ -57,7 +57,7 @@
 			  "alignment": "left",
 			  "segments": [
 				  {
-					  "type": "prompt",
+					  "type": "status",
 					  "template": "{{ if .Root }}<p:accent># </>{{ end }}> ",
 					  "foreground": "p:text"
 				  }
