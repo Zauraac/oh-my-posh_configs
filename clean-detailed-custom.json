@@ -171,7 +171,7 @@
             "folder_separator_icon": " \uf061 ",
             "home_icon": "\ueb06",
 			"style": "mixed",
-			"mixed_threshold": 9,
+			"mixed_threshold": 3,
 			"display_root": true
           },
           "template": " {{ .Path }} ",
@@ -186,18 +186,19 @@
     {
       "type": "prompt",
       "alignment": "right",
+      "overflow": "hide",
       "segments": [
         {
           "properties": {
-			"always_enabled": true
+		"always_enabled": true
           },
 		"template": " {{ if .Root }}\uf148 {{ end }}{{ if .SSHSession }}\ueb3a {{ else }}\uf007 {{ end }}{{ .UserName }}  \uf108 {{ .HostName }} ",
           "type": "session",
-		  "foreground": "#FEF5ED",
-		  "description": "Elevation indicator, user and machine readout",
+		"foreground": "#FEF5ED",
+		"description": "Elevation indicator, user and machine readout",
           "style": "plain"
         },
-		{
+	{
 		"type": "ipify",
 		"style": "plain",
 		"foreground": "#FEF5ED",
@@ -206,8 +207,8 @@
 		"min_width": 60,
 		"properties": {
 			"http_timeout": 1000
-			}
 		}
+	}
       ]
     },
     {
